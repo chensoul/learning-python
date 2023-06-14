@@ -1,47 +1,116 @@
+#!/usr/bin/env python
+# coding=utf-8
+
+# 1、变量的定义和使用
 # Python是动态类型的语言，无须声明变量类型，直接对变量赋值即可使用
-author = 'world'
-print('Hello, {}!'.format(author))
 
-# 可以一行定义多个变量
-author, reader = 'hello', 'world'
-# 交换变量的值
-author, reader = reader, author
-print(author, reader)
+# 创建一个整型变量 x
+x = 5
+# 创建一个字符串变量 name
+name = "John"
+# 创建一个列表变量 my_list
+my_list = [1, 2, 3]
 
-# 变量解包
-usernames = ['hello', 'world']
-# 注意：左侧变量的个数必须和待展开的列表长度相等，否则会报错
-author, reader = usernames
-print(author, reader)
+# 引用变量 x 的值
+print(x)  # 输出 5
+# 引用变量 name 的值
+print("My name is", name)  # 输出 My name is John
+# 引用变量 my_list 的值
+print(my_list)  # 输出 [1, 2, 3]
 
-# 变量解包：支持嵌套
-attrs = [1, ['xiao_ming', 100]]
-user_id, (username, score) = attrs
-print(user_id, username, score)
+# 变量是动态类型
+x = "Hello, world!"  # x 是一个字符串
+print(x)  # 输出 Hello, world!
 
-# 变量解包：动态解包
-data = ['xiao_ming', 'apple', 'orange', 'banana', 100]
-username, *fruits, score = data
-print(username, fruits, score)
+################################################
 
-for username, score in [('xiao_ming', 100), ('zhang_san', 60)]:
-    print(username)
+# 2、一行定义多个变量
+# 在 Python 中可以一行定义多个变量。可以使用逗号将多个变量名分开，并使用等号将它们与相应的值分开。
+x, y, z = 5, "John", [1, 2, 3]
 
-# 单下划线变量名：
-# 1、作为一个临时变量
+# 输出变量值
+print(x)  # 输出 5
+print(y)  # 输出 John
+print(z)  # 输出 [1, 2, 3]
+
+# 一行定义多个变量，使用相同的值
+a = b = c = 0
+
+# 输出变量值
+print(a)  # 输出 0
+print(b)  # 输出 0
+print(c)  # 输出 0
+
+################################################
+
+# 3、变量解包
+# 定义一个元组
+my_tuple = (1, 2, 3)  # 注意：左侧变量的个数必须和待展开的列表长度相等，否则会报错
+
+# 变量解包，将元组中的值分配给多个变量
+x, y, z = my_tuple
+
+# 输出变量值
+print(x)  # 输出 1
+print(y)  # 输出 2
+print(z)  # 输出 3
+
+# 变量解包语法可以用于嵌套的序列或元组
+# 定义一个嵌套元组
+my_tuple = (1, 2, (3, 4))
+
+# 变量解包，将元组中的值分配给多个变量
+x, y, (z, w) = my_tuple
+
+# 输出变量值
+print(x)  # 输出 1
+print(y)  # 输出 2
+print(z)  # 输出 3
+print(w)  # 输出 4
+
+# 定义一个嵌套列表
+my_list = [1, 2, [3, 4]]
+
+# 变量解包，将列表中的值分配给多个变量
+x, y, [z, w] = my_list
+
+# 动态解包是指在运行时确定要解包的序列或元组，并将其分配给多个变量。
+# 定义一个列表
+my_list = [1, 2, 3, 4, 5]
+
+# 使用动态解包，将列表前两个值分配给变量 x 和 y，其他值分配给变量 rest
+x, y, *rest = my_list
+
+# 输出变量值
+print(x)  # 输出 1
+print(y)  # 输出 2
+print(rest)  # 输出 [3, 4, 5]
+
+################################################
+
+# 4、单下划线变量名
+# 4.1 私有变量：在 Python 中，没有真正的私有变量，但是以单个下划线开头的变量名通常被视为私有变量。
+
+# 4.2 占位符变量
 # 忽略展开时的第二个变量
-author, _ = usernames
-print(author, username)
-# 忽略第一个和最后一个变量之间的所有变量
-username, *_, score = data
-print(author, score)
+x, _ = [1, 2]
 
-# 2、作为循环计数器
-# 在循环中，如果你不需要使用计数器的值，可以将计数器命名为下划线_，以表示它是一个临时变量
+print(x, _)  # 输出 1 2
+
+# 使用占位符变量
 for _ in range(10):
-    pass
+    print(_)
 
-# 3、作为一个占位符
-# 默认保存我们输入的上个表达式的返回值
-'foo'.upper()
-print(_)
+################################################
+
+# 5、可变和不可变对象
+# 数字、字符串和元组是不可变的，而列表和字典是可变的
+# 可变对象示例
+my_list = [1, 2, 3]
+my_list.append(4)
+print(my_list)  # 输出 [1, 2, 3, 4]
+
+# 不可变对象示例
+my_string = "Hello"
+my_string += ", world!"
+print(my_string)  # 输出 Hello, world!
